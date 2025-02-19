@@ -32,3 +32,9 @@ User-Friendly Shopping Experience: Offer a seamless, easy-to-use online shopping
 Target Audience: Eco-conscious individuals, art and pottery enthusiasts, and those looking to add unique, sustainable pieces to their homes or offices.
 
 Conclusion: Earthen provides not just a shopping platform, but a way to embrace tradition and sustainability through the art of handmade pottery and decorative items. The MERN stack ensures a fast, responsive, and scalable solution that can grow alongside the brand as it expands.
+
+
+
+
+
+Digital Wireframe Link - https://www.figma.com/design/EsHz2jnpJMMqmPD98JFoio/Untitled?node-id=0-1&t=N9I8JZlDRx9KABZe-1

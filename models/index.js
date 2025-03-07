@@ -19,3 +19,4 @@ const ProductCategory = require('./productcategory');
 const ProductReview = require('./productreview');
 
 module.exports = { Product, Category, ProductCategory, ProductReview, sequelize };
+//

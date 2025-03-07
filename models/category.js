@@ -12,3 +12,4 @@ description: { type: DataTypes.STRING }
 }, { timestamps: false });
 
 module.exports = Category;
+// 

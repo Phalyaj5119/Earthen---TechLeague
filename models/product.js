@@ -16,3 +16,4 @@ imageUrl: { type: DataTypes.STRING } // URL to product image
 }, { timestamps: false });
 
 module.exports = Product;
+//

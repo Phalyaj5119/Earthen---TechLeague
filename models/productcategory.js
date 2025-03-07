@@ -17,3 +17,4 @@ allowNull: false
 }, { timestamps: false });
 
 module.exports = ProductCategory;
+//

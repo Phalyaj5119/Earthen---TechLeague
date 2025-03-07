@@ -25,3 +25,4 @@ ProductReview.belongsTo(Product);
 // Role and Permission (Many-to-Many)
 Role.belongsToMany(Permission, { through: RolePermission });
 Permission.belongsToMany(Role, { through: RolePermission });
+// Role and Permission (Many-to-Many)

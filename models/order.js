@@ -19,3 +19,4 @@ status: { type: DataTypes.STRING, defaultValue: "Pending" } // Order status (Pen
 }, { timestamps: false });
 
 module.exports = Order;
+//

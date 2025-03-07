@@ -19,3 +19,4 @@ review: { type: DataTypes.TEXT }
 }, { timestamps: false });
 
 module.exports = ProductReview;
+//

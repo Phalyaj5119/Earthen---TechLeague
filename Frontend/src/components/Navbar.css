@@ -1,0 +1,128 @@
+/* Navbar Styles */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: transparent !important; /* Make sure it's transparent */
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  color: white;
+  box-shadow: none;
+  transition: background 0.3s ease;
+}
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0 auto;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.nav-links li {
+  display: inline-block;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.nav-links li a:hover {
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Navbar Buttons - Profile and Cart icons */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cart-btn, .profile-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.cart-btn svg, .profile-btn svg {
+  color: white;
+  max-width: 30px;
+  max-height: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cart-btn:hover svg, .profile-btn:hover svg {
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Hamburger menu for mobile */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger div {
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  margin: 5px;
+}
+
+/* Show hamburger on mobile */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* Initially hide nav links on mobile */
+    flex-direction: column;
+    gap: 1rem;
+    position: absolute;
+    top: 70px; /* Adjust based on navbar height */
+    right: 0;
+    background: rgba(0, 0, 0, 0);
+    width: 100%;
+    padding: 1rem 2rem;
+  }
+
+  .nav-links.active {
+    display: flex; /* Show links when 'active' class is added */
+  }
+
+  .nav-right {
+    display: none; /* Hide the Profile and Cart icons on mobile */
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+/* Tablet responsiveness */
+@media (max-width: 1024px) {
+  .nav-links {
+    gap: 1.5rem;
+  }
+
+  .nav-links li a {
+    font-size: 1.1rem;
+  }
+}

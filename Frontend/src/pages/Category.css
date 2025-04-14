@@ -1,0 +1,99 @@
+/* Category.css */
+.category-page {
+  padding: 40px;
+  text-align: center;
+  color: white;
+  background-color: #1a1814; /* Ensure background color is visible */
+  height: 100vh; /* Make the page take the full height of the screen */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center the content */
+}
+
+.category-page h2 {
+  font-size: 36px;
+  margin-bottom: 40px; /* Add bottom margin to give space after the heading */
+  color: white; /* Ensure the text color is white for visibility */
+  font-weight: bold; /* Make the heading bold */
+}
+
+.category-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap; /* This ensures they wrap on smaller screens */
+  margin-top: 20px; /* Add some space after the heading */
+}
+
+.category-item {
+  position: relative;
+  width: 200px; /* Set a fixed width for each item */
+  height: 250px; /* Adjust height as per design */
+  border-radius: 8px;
+  overflow: hidden;
+  background: none; /* Make sure there's no background color */
+}
+
+.category-item a {
+  text-decoration: none; /* Remove underline from link */
+}
+
+.category-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the entire container */
+  border-radius: 8px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: opacity 0.3s ease;
+  padding: 15px;
+}
+
+.category-item:hover .overlay {
+  opacity: 1;
+}
+
+.overlay h3 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.arrow {
+  font-size: 2rem;
+}
+
+/* Make the images larger on wider screens */
+@media (min-width: 1024px) {
+  .category-item {
+    width: 250px; /* Increase width on wider screens */
+    height: 300px; /* Increase height on wider screens */
+  }
+}
+
+/* Make sure the items are in a row on mobile */
+@media (max-width: 768px) {
+  .category-buttons {
+    flex-direction: row; /* Ensure items are in a row on smaller screens */
+    justify-content: center; /* Center them on mobile */
+  }
+
+  .category-item {
+    width: 150px; /* Reduce size for mobile screens */
+    height: 200px; /* Adjust height for mobile screens */
+  }
+}

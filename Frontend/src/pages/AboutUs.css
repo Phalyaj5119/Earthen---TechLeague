@@ -1,0 +1,125 @@
+/* Reset and general styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #333;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  .about-us-container {
+    background-color: #333;
+    color: white;
+    min-height: 100vh;
+    padding: 50px 20px;
+    text-align: center;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .about-us-title {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    font-weight: bold;
+  }
+  
+  .about-us-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  .left-column,
+  .right-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .about-us-text,
+  .right-text {
+    text-align: left;
+    padding-right: 30px;
+  }
+  
+  .about-us-text p,
+  .right-image-text {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #ccc;
+  }
+  
+  .left-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    max-width: 450px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .right-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    max-width:350px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .left-image {
+    margin-top: 20px;
+  }
+  
+  .right-image {
+    margin-bottom: 20px;
+  }
+  
+  .right-image-text {
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+    padding-left: 100px;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .about-us-content {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .left-column,
+    .right-column {
+      width: 100%;
+    }
+  
+    .about-us-text,
+    .right-text {
+      text-align: center;
+      padding-right: 0;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+  
+    .left-image img,
+    .right-image img {
+      width: 90%;
+      max-width: 250px;
+      height: auto;
+      margin: 0 auto;
+    }
+  
+    .right-image-text {
+      padding-left: 0;
+      font-size: 14px;
+      text-align: center;
+    }
+  }
+  

@@ -1,0 +1,81 @@
+.landing-page {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.hero-section {
+  height: 100vh;
+  background: url('../images/bgimage.png') no-repeat center center/cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  color: white;
+  padding: 0 1rem;
+}
+
+.hero-section h1,
+.hero-section h2,
+.hero-section p,
+.hero-section span {
+  color: white !important;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Optional: subtle glow for readability */
+}
+
+.join-us-btn {
+  background-color: rgba(255, 255, 255, 0.253) !important;
+  color: white !important;
+  padding: 0.5em 1rem;
+  border: none;
+  border-radius: 40px;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.join-us-btn:hover {
+  background-color: #111 !important;
+}
+
+.arrow-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgb(195, 171, 137);
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.content-section {
+  background: white;
+  color: black;
+  /*padding: 3rem 1rem;*/
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 1rem;
+  }
+
+  .join-us-btn {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .arrow-circle {
+    width: 26px;
+    height: 26px;
+    font-size: 0.9rem;
+  }
+}

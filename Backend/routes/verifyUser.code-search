@@ -1,0 +1,15 @@
+# Query: verifyUser
+# ContextLines: 1
+
+6 results - 1 file
+
+home-decor-site/backend/routes/userRoutes.js:
+  12  
+  13: const verifyToken = require('../middlewares/authMiddleware'); // or authMiddleware.verifyToken, depending on your structure
+  14  
+  15: router.get('/order-history', verifyToken, getOrderHistory);
+  16: router.get('/track-order/:orderId', verifyToken, trackOrder);
+  17: router.get('/wallet', verifyToken, getWalletDetails);
+  18: router.get('/profile', verifyToken, getUserProfile);
+  19: router.put('/profile', verifyToken, updateUserProfile);
+  20  

@@ -1,1 +1,5 @@
 node_modules/
+# Ignore package.json and package-lock.json inside Frontend folder
+Frontend/package.json
+Frontend/package-lock.json
+

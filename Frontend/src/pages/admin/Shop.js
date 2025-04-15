@@ -1,88 +1,178 @@
-// src/pages/Shop.js
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import './Shop.css'; // Add styling here
+/* Shop.css */
 
-export default function Shop() {
-  const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [selectedCat, setSelectedCat] = useState(null);
-  const [filterColor, setFilterColor] = useState('');
-  const [filterPrice, setFilterPrice] = useState('');
-  const token = localStorage.getItem('token');
 
-  useEffect(() => {
-    fetchProducts();
-    fetchCategories();
-  }, [selectedCat, filterColor, filterPrice]);
+/* Container and Layout */
+.shop-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  background: transparent;
+  min-height: 100vh;
+}
 
-  const fetchCategories = async () => {
-    const res = await axios.get('http://localhost:5000/api/categories');
-    setCategories(res.data);
-  };
+.shop-heading {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #333;
+}
 
-  const fetchProducts = async () => {
-    let url = 'http://localhost:5000/api/products?';
-    if (selectedCat) url += `category=${selectedCat}&`;
-    if (filterColor) url += `color=${filterColor}&`;
-    if (filterPrice) url += `price=${filterPrice}`;
-    const res = await axios.get(url);
-    setProducts(res.data);
-  };
+.shop-content {
+  display: flex;
+  gap: 20px;
+}
 
-  const handleAddToCart = (productId) => {
-    if (!token) return alert("Please log in to add to cart.");
-    // TODO: Call backend to add to cart
-  };
+/* Sidebar */
+.sidebar {
+  flex: 1;
+  max-width: 250px;
+  background-color: #fff8ec;
+  padding: 20px;
+  border-radius: 16px;
+  color: #333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
 
-  const handleWishlist = (productId) => {
-    if (!token) return alert("Please log in to add to wishlist.");
-    // TODO: Call backend to add to wishlist
-  };
+.filter-section {
+  margin-bottom: 30px;
+}
 
-  return (
-    <div className="shop-container">
-      <aside className="sidebar">
-        <h3>Categories</h3>
-        <ul>
-          {categories.map(cat => (
-            <li key={cat.id} onClick={() => setSelectedCat(cat.name)}>
-              {cat.name}
-            </li>
-          ))}
-        </ul>
+.filter-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #444;
+}
 
-        <h4>Color</h4>
-        <select onChange={(e) => setFilterColor(e.target.value)}>
-          <option value="">All</option>
-          <option value="Red">Red</option>
-          <option value="Blue">Blue</option>
-          <option value="White">White</option>
-        </select>
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-        <h4>Price</h4>
-        <select onChange={(e) => setFilterPrice(e.target.value)}>
-          <option value="">All</option>
-          <option value="0-500">Under ₹500</option>
-          <option value="500-1000">₹500 - ₹1000</option>
-          <option value="1000-9999">₹1000+</option>
-        </select>
-      </aside>
+.category-item {
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  color: #333;
+  font-weight: 500;
+}
 
-      <main className="products-grid">
-        {products.length > 0 ? products.map(prod => (
-          <div className="product-card" key={prod.id}>
-            <img src={prod.imageUrl} alt={prod.name} />
-            <h4>{prod.name}</h4>
-            <p>{prod.description}</p>
-            <p>₹{prod.price}</p>
-            <div className="product-actions">
-              <button onClick={() => handleWishlist(prod.id)}>❤️</button>
-              <button onClick={() => handleAddToCart(prod.id)}>🛒</button>
-            </div>
-          </div>
-        )) : <p>No products found</p>}
-      </main>
-    </div>
-  );
+.category-item:hover {
+  background-color: #f0e3d1;
+}
+
+.category-item.active {
+  background-color: #e8d6be;
+  color: #000;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  background-color: #fff;
+}
+
+/* Product Grid */
+.products-grid {
+  flex: 3;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* Product Card */
+.product-card {
+  background-color: #f5f0e6; /* beige tone */
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-image-link,
+.product-name-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.product-name {
+  margin: 10px 0 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.product-description {
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.product-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.product-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.wishlist-button,
+.cart-button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.wishlist-button:hover,
+.cart-button:hover {
+  background-color: #ddd;
+}
+
+.no-products {
+  font-size: 1.2rem;
+  color: #888;
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .shop-content {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    max-width: 100%;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
 }

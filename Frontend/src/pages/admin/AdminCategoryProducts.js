@@ -1,39 +1,69 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './AdminCategoryProducts.css';
+//import './AdminCategoryProducts.css';
 
-export default function AdminCategoryProducts() {
-  const [categories, setCategories] = useState([]);
+export default function AdminProducts() {
+  const [products, setProducts] = useState([]);
+  const [newProduct, setNewProduct] = useState({
+    name: '',
+    price: '',
+    description: '',
+    categoryId: '',
+    imageUrl: '',
+  });
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetchData();
+    fetchProducts();
   }, []);
 
-  const fetchData = async () => {
+  const fetchProducts = async () => {
     const res = await axios.get('http://localhost:5000/api/admin/products-by-category', {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` },
     });
-    setCategories(res.data);
+    const allProducts = res.data.flatMap(cat => cat.Products);
+    setProducts(allProducts);
+  };
+
+  const handleInputChange = (e) => {
+    setNewProduct({ ...newProduct, [e.target.name]: e.target.value });
+  };
+
+  const addProduct = async () => {
+    await axios.post('http://localhost:5000/api/admin/products', newProduct, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    fetchProducts();
+    setNewProduct({ name: '', price: '', description: '', categoryId: '', imageUrl: '' });
+  };
+
+  const deleteProduct = async (id) => {
+    await axios.delete(`http://localhost:5000/api/admin/products/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    fetchProducts();
   };
 
   return (
-    <div className="admin-cat-products">
-      <h2>📂 Products by Category</h2>
-      {categories.map(cat => (
-        <div key={cat.id} className="category-section">
-          <h3>{cat.name}</h3>
-          <div className="product-grid">
-            {cat.Products.map(prod => (
-              <div key={prod.id} className="product-card">
-                <img src={prod.imageUrl} alt={prod.name} />
-                <h4>{prod.name}</h4>
-                <p>₹{prod.price}</p>
-              </div>
-            ))}
+    <div className="admin-products">
+      <h2>📦 Manage Products</h2>
+      <div>
+        <h3>Add Product</h3>
+        <input name="name" placeholder="Name" value={newProduct.name} onChange={handleInputChange} />
+        <input name="price" placeholder="Price" value={newProduct.price} onChange={handleInputChange} />
+        <input name="description" placeholder="Description" value={newProduct.description} onChange={handleInputChange} />
+        <input name="categoryId" placeholder="Category ID" value={newProduct.categoryId} onChange={handleInputChange} />
+        <input name="imageUrl" placeholder="Image URL" value={newProduct.imageUrl} onChange={handleInputChange} />
+        <button onClick={addProduct}>Add</button>
+      </div>
+      <div>
+        <h3>Product List</h3>
+        {products.map(product => (
+          <div key={product.id}>
+            {product.name} - ₹{product.price} - <button onClick={() => deleteProduct(product.id)}>Delete</button>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

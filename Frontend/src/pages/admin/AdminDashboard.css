@@ -1,33 +1,62 @@
+/* src/pages/admin/AdminDashboard.css */
 .admin-dashboard {
-    display: flex;
-    min-height: 100vh;
-  }
-  
-  .admin-sidebar {
-    width: 220px;
-    background-color: #333;
-    color: white;
-    padding: 20px;
-  }
-  
-  .admin-sidebar h2 {
-    margin-bottom: 20px;
-  }
-  
-  .admin-sidebar nav a {
-    display: block;
-    margin: 10px 0;
-    color: white;
-    text-decoration: none;
-  }
-  
-  .admin-sidebar nav a.active {
-    font-weight: bold;
-    text-decoration: underline;
-  }
-  
-  .admin-main {
-    flex: 1;
-    padding: 20px;
-  }
-  
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f5f0; /* Beige background */
+  color: #333; /* Darker text for readability */
+}
+
+.admin-sidebar {
+  width: 250px;
+  background-color: #e8e3d9; /* Light beige sidebar */
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-title-container {
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.admin-title-container h1 {
+  color: #6a594b; /* Earthy brown title */
+  font-size: 1.8rem;
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dcd5c9; /* Subtle divider */
+}
+
+.admin-sidebar nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-link {
+  padding: 12px 15px;
+  text-decoration: none;
+  color: #5c4e42; /* Earthy brown for links */
+  margin-bottom: 8px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background-color: #dcd5c9; /* Light beige hover/active */
+  color: #4a3f36; /* Darker earthy brown on hover/active */
+}
+
+.nav-icon {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.admin-main {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto; /* Enable scrolling if content overflows */
+}

@@ -1,5 +1,49 @@
 const bcrypt = require('bcrypt');
-const { User, Product, Category, Payment, Order } = require('../models');
+const { User, Product, Category, Payment, Order, AdminLog, sequelize } = require('../models');
+
+//Users
+exports.addUser = async (req, res) => {
+  try {
+      const { username, email, password, role } = req.body;
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const newUser = await User.create({ username, email, password: hashedPassword, role });
+      res.json(newUser);
+  } catch (err) {
+      console.error("Error creating user:", err);
+      res.status(500).json({ message: "Error creating user.", error: err.message });
+  }
+};
+
+
+// PRODUCTS MANAGEMENT
+exports.addProduct = async (req, res) => {
+  try {
+    const { name, price, description, categoryId, imageUrl } = req.body;
+    const newProduct = await Product.create({
+      name,
+      price,
+      description,
+      categoryId,
+      imageUrl,
+    });
+    res.json(newProduct);
+  } catch (err) {
+    res.status(500).json({ message: "Error adding product." });
+  }
+};
+
+exports.deleteProduct = async (req, res) => {
+  try {
+    const product = await Product.findByPk(req.params.id);
+    if (!product) return res.status(404).json({ message: "Product not found." });
+
+    await product.destroy();
+    res.json({ message: "Product deleted." });
+  } catch (err) {
+    res.status(500).json({ message: "Error deleting product." });
+  }
+};
+
 
 // USERS
 exports.getAllUsers = async (req, res) => {
@@ -11,16 +55,6 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
-exports.addUser = async (req, res) => {
-  try {
-    const { username, email, password, role } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await User.create({ username, email, password: hashedPassword, role });
-    res.json(newUser);
-  } catch (err) {
-    res.status(500).json({ message: "Error creating user." });
-  }
-};
 
 exports.deleteUser = async (req, res) => {
   try {
@@ -41,11 +75,16 @@ exports.getProductsByCategory = async (req, res) => {
       include: {
         model: Product,
         attributes: ['id', 'name', 'price', 'imageUrl'],
-      }
+        as: 'Products', // Add the alias here
+      },
     });
     res.json(categories);
   } catch (err) {
-    res.status(500).json({ message: "Error fetching products by category" });
+    console.error("Error fetching products by category:", err);
+    res.status(500).json({
+      message: "Error fetching products by category",
+      error: err.message,
+    });
   }
 };
 
@@ -88,3 +127,4 @@ exports.updateOrderStatus = async (req, res) => {
     res.status(500).json({ message: "Failed to update order status" });
   }
 };
+
